@@ -44,7 +44,7 @@ class Bird:
     if d>=16:
       d=16
     if d<0:
-      d-=2
+      d-=2  #Applies a slight upward correction to the displacement when the bird is initially moving upwards, likely to create a more natural jump arc.
 
     self.y+=d
 
@@ -55,6 +55,10 @@ class Bird:
     else:
       if self.tilt>-90:
         self.tilt-=self.ROT_VEL
+  
+  '''Ascending: If the bird is ascending (either d < 0 or its y position is close to its initial height), the tilt is set to the maximum rotation. This gives the bird an upward-facing angle.
+Descending: If the bird is descending (d >= 0 and its y position is significantly below its initial height), the tilt is decreased gradually until it reaches -90 degrees, giving the bird a downward-facing angle.'''
+
 
   def draw(self,win):
     self.img_count+=1
